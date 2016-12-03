@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class FragmentHome extends Fragment {
 
-    ArrayList<Timer> timerList = new ArrayList<Timer>(); //타이머들을 보관.
+    ArrayList<Timer> timerArrayList = new ArrayList<Timer>(); //타이머들을 보관.
     View v;
 
     String[] categoryList = {"MOVING", "STUDYING", "RESTING", "EATING"};
@@ -30,6 +30,8 @@ public class FragmentHome extends Fragment {
 
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_item, categoryList);
         categorySpinner.setAdapter(spinnerAdapter);
+
+        //DB의 값을 timerArrayList에 담고 어뎁터 설정. > DB만들고 나서 구현.
 
 
         return super.onCreateView(inflater, container, savedInstanceState);

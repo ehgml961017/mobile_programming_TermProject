@@ -31,23 +31,39 @@ public class TimeAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return timerArrayList.get(position);
+    public Object getItem(int idx) {
+        return timerArrayList.get(idx);
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
+    public long getItemId(int idx) {
+        return idx;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int idx, View convertView, ViewGroup parent) {
         if(convertView==null){
             convertView = inflater.inflate(R.layout.timer_array_list_view, null);
         }
 
-        Timer tmpTimer = timerArrayList.get(position);
+        this.name = (TextView)convertView.findViewById(R.id.name);
+        this.idx = (TextView)convertView.findViewById(R.id.idx);
+        this.start = (Button)convertView.findViewById(R.id.start);
+        this.stop = (Button)convertView.findViewById(R.id.stop);
+        this.del = (Button)convertView.findViewById(R.id.del);
 
+
+
+        Timer tmpTimer = timerArrayList.get(idx);
+
+        this.name.setText(tmpTimer.getName());
+        this.idx.setText(idx);
+        this.start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
 
 
         return convertView;
