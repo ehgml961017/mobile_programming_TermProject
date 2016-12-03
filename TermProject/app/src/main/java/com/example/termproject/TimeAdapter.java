@@ -61,7 +61,7 @@ public class TimeAdapter extends BaseAdapter {
         this.start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
             }
         });
 
