@@ -4,20 +4,36 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <FrameLayout
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="431dp">
+        android:layout_height="450dp"
+        android:id="@+id/TimerListView" />
 
-    </FrameLayout>
-
-    <FrameLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.84">
+        android:layout_height="50dp">
 
         <Spinner
-            android:layout_width="123dp"
-            android:layout_height="37dp"
-            android:id="@+id/spinner" />
-    </FrameLayout>
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:id="@+id/spinner"
+            android:layout_weight="1" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText"
+            android:layout_weight="1"
+            android:hint="insert Name" />
+
+        <Button
+            android:text="add"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/add"
+            android:layout_weight="1" />
+    </LinearLayout>
 </LinearLayout>

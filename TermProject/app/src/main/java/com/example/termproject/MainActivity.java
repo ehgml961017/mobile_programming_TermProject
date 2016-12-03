@@ -12,10 +12,6 @@ import android.view.View;
 import android.widget.TabHost;
 import android.widget.Toast;
 
-/**
- * Edited by 한채연 on 16. 11. 08.
- * Edited by 허준녕 on 16. 11. 14.
- */
 
 public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
 

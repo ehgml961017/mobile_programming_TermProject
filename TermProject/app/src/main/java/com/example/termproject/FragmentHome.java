@@ -31,6 +31,7 @@ public class FragmentHome extends Fragment {
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_item, categoryList);
         categorySpinner.setAdapter(spinnerAdapter);
 
+
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 

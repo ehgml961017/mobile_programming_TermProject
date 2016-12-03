@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="70dp">
+
+    <TextView
+        android:text="name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:layout_weight="28.49" />
+
+    <TextView
+        android:text="position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/idx"
+        android:layout_weight="1"
+        android:visibility="gone" />
+
+    <Button
+        android:text="▶"
+        android:layout_height="wrap_content"
+        android:id="@+id/start"
+        android:layout_weight="0.75"
+        android:layout_width="40dp" />
+
+    <Button
+        android:text="■"
+        android:layout_height="wrap_content"
+        android:id="@+id/stop"
+        android:layout_width="40dp" />
+
+    <Button
+        android:text="X"
+        android:layout_height="wrap_content"
+        android:id="@+id/del"
+        android:layout_width="40dp" />
+</LinearLayout>
