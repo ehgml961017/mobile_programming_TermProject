@@ -60,7 +60,7 @@ public class FragmentHome extends Fragment {
         this.listView = (ListView) v.findViewById(R.id.TimerListView);
         //db초기화
         initializeDB();
-        adapter = new TimeAdapter(getLayoutInflater(savedInstanceState), timerArrayList);
+        adapter = new TimeAdapter(helper,db,timerArrayList,getLayoutInflater(savedInstanceState));
         listView.setAdapter(adapter);
 
         add.setOnClickListener(new View.OnClickListener() {

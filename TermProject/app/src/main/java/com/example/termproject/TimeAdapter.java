@@ -1,5 +1,6 @@
 package com.example.termproject;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +20,14 @@ public class TimeAdapter extends BaseAdapter {
     LayoutInflater inflater;
     TextView name, idx;
     Button start,stop,del;
+    DBHelper helper;
+    SQLiteDatabase db;
 
-    public TimeAdapter(LayoutInflater inflater, ArrayList<Timer> timerArrayList) {
-        this.inflater = inflater;
+    public TimeAdapter(DBHelper helper, SQLiteDatabase db, ArrayList<Timer> timerArrayList, LayoutInflater inflater) {
+        this.helper = helper;
+        this.db = db;
         this.timerArrayList = timerArrayList;
+        this.inflater = inflater;
     }
 
     @Override
@@ -58,10 +63,14 @@ public class TimeAdapter extends BaseAdapter {
 
         this.name.setText(tmpTimer.getName());
         this.idx.setText(Integer.toString(idx));
-        this.start.setOnClickListener(new View.OnClickListener() {
+        this.del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int deleteIdx = Integer.parseInt(TimeAdapter.this.idx.getText().toString());
+                int deleteId = timerArrayList.get(deleteIdx).getId();
+                db.execSQL("delete from Timer where idx=? ;",new Object[]{deleteId});
+                timerArrayList.remove(deleteIdx);
+                TimeAdapter.this.notifyDataSetChanged();
             }
         });
 
