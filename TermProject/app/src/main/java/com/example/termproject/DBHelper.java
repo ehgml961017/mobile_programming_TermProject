@@ -16,8 +16,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table Timer(idx primary autoincrement integer, category text, name text);"); //timer table 생성
-        db.execSQL("create table Log(idx primary autoincrement integer, category text, name text, note text, pic text, latitude real, longitude real, startTime datatime, endTime datatime, leadTime real);"); //log table 생성.
+        db.execSQL("create table Timer(idx integer primary key autoincrement , category text, name text);"); //timer table 생성
+        db.execSQL("create table Log(idx integer primary key autoincrement, category text, name text, note text, pic text, latitude real, longitude real, startTime datatime, endTime datatime, leadTime real);"); //log table 생성.
     }
 
     @Override

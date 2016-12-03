@@ -6,8 +6,8 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:id="@+id/TimerListView" />
+        android:id="@+id/TimerListView"
+        android:layout_height="300dp" />
 
     <LinearLayout
         android:orientation="horizontal"

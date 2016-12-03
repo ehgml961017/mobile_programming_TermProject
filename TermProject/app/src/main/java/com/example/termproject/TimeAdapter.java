@@ -47,7 +47,7 @@ public class TimeAdapter extends BaseAdapter {
         }
 
         this.name = (TextView)convertView.findViewById(R.id.name);
-        this.idx = (TextView)convertView.findViewById(R.id.idx);
+        this.idx = (TextView)convertView.findViewById(R.id.idxView);
         this.start = (Button)convertView.findViewById(R.id.start);
         this.stop = (Button)convertView.findViewById(R.id.stop);
         this.del = (Button)convertView.findViewById(R.id.del);
@@ -57,7 +57,7 @@ public class TimeAdapter extends BaseAdapter {
         Timer tmpTimer = timerArrayList.get(idx);
 
         this.name.setText(tmpTimer.getName());
-        this.idx.setText(idx);
+        this.idx.setText(Integer.toString(idx));
         this.start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
