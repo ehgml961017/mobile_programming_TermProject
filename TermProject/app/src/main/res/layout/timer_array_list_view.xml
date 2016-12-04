@@ -10,10 +10,16 @@
         android:id="@+id/name"
         android:layout_weight="28.49" />
 
-    <TextView
-        android:text="position"
+    <Chronometer
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/chronometer2"
+        android:layout_weight="28.49" />
+
+    <TextView
+        android:text="position"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
         android:layout_weight="1"
         android:visibility="invisible"
         android:id="@+id/idxView"

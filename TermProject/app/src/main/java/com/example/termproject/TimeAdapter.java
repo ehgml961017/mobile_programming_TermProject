@@ -1,14 +1,18 @@
 package com.example.termproject;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by 박도희 on 2016-12-03.
@@ -22,6 +26,9 @@ public class TimeAdapter extends BaseAdapter {
     Button start,stop,del;
     DBHelper helper;
     SQLiteDatabase db;
+    Chronometer chronometer;
+    long stopTime = 0 ;
+    boolean isStart = false;
 
     public TimeAdapter(DBHelper helper, SQLiteDatabase db, ArrayList<Timer> timerArrayList, LayoutInflater inflater) {
         this.helper = helper;
@@ -56,6 +63,7 @@ public class TimeAdapter extends BaseAdapter {
         this.start = (Button)convertView.findViewById(R.id.start);
         this.stop = (Button)convertView.findViewById(R.id.stop);
         this.del = (Button)convertView.findViewById(R.id.del);
+        this.chronometer = (Chronometer)convertView.findViewById(R.id.chronometer2);
 
 
 
@@ -74,6 +82,34 @@ public class TimeAdapter extends BaseAdapter {
             }
         });
 
+        this.start.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+//                SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+//                String startTime = df.format(c.getTime());
+                if(!isStart) {
+                    isStart = true;
+                    Calendar c = Calendar.getInstance();
+                    String startTime = new SimpleDateFormat("HH:mm:ss").format(c.getTime());
+                    chronometer.setBase(SystemClock.elapsedRealtime() + stopTime);
+                    chronometer.start();
+                }
+            }
+        });
+
+        this.stop.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                stopTime = chronometer.getBase() - SystemClock.elapsedRealtime();
+                stopTime = 0;
+                chronometer.stop();
+                Calendar c = Calendar.getInstance();
+                String endTime = new SimpleDateFormat("HH:mm:ss").format(c.getTime());
+                isStart = false;
+            }
+
+        });
 
         return convertView;
     }
