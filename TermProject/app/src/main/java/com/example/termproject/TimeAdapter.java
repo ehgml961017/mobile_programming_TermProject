@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,7 +27,6 @@ public class TimeAdapter extends BaseAdapter {
     Button start,stop,del;
     DBHelper helper;
     SQLiteDatabase db;
-    Chronometer chronometer;
     long stopTime = 0 ;
     boolean isStart = false;
 
@@ -57,13 +57,12 @@ public class TimeAdapter extends BaseAdapter {
         if(convertView==null){
             convertView = inflater.inflate(R.layout.timer_array_list_view, null);
         }
-
         this.name = (TextView)convertView.findViewById(R.id.name);
         this.idx = (TextView)convertView.findViewById(R.id.idxView);
         this.start = (Button)convertView.findViewById(R.id.start);
         this.stop = (Button)convertView.findViewById(R.id.stop);
         this.del = (Button)convertView.findViewById(R.id.del);
-        this.chronometer = (Chronometer)convertView.findViewById(R.id.chronometer2);
+        final Chronometer chronometer = (Chronometer)convertView.findViewById(R.id.chronometer2);
 
 
 
@@ -87,12 +86,13 @@ public class TimeAdapter extends BaseAdapter {
             public void onClick(View v) {
 //                SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
 //                String startTime = df.format(c.getTime());
-                if(!isStart) {
-                    isStart = true;
+                if(!isStart) { //start가 눌린 상태에서는 다시 start되는 일이 없도록!
+                    isStart = true; //start가 눌린 상태
                     Calendar c = Calendar.getInstance();
-                    String startTime = new SimpleDateFormat("HH:mm:ss").format(c.getTime());
-                    chronometer.setBase(SystemClock.elapsedRealtime() + stopTime);
+                    String startTime = new SimpleDateFormat("HH:mm:ss").format(c.getTime()); //현재시간을 startTime에 저장
+                    chronometer.setBase(SystemClock.elapsedRealtime() + stopTime); //사실 이거 왜 해주는건지 모르게씀.
                     chronometer.start();
+                    TimeAdapter.this.notifyDataSetChanged();
                 }
             }
         });
@@ -101,12 +101,13 @@ public class TimeAdapter extends BaseAdapter {
         {
             @Override
             public void onClick(View v) {
-                stopTime = chronometer.getBase() - SystemClock.elapsedRealtime();
+                stopTime = chronometer.getBase() - SystemClock.elapsedRealtime(); //얘도
                 stopTime = 0;
                 chronometer.stop();
                 Calendar c = Calendar.getInstance();
-                String endTime = new SimpleDateFormat("HH:mm:ss").format(c.getTime());
-                isStart = false;
+                String endTime = new SimpleDateFormat("HH:mm:ss").format(c.getTime()); //현재시간을 endTime에 저장
+                isStart = false; //start가 끝남!
+                TimeAdapter.this.notifyDataSetChanged();
             }
 
         });
